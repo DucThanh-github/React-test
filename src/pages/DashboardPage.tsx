@@ -29,7 +29,7 @@ export default function DashboardPage() {
     <div className="page-wrap">
       <PageHeader
         eyebrow="WORKSPACE / ZUSTAND"
-        title="Học bằng cách làm. test update"
+        title="Học bằng cách làm. hihi"
         description="Một task manager nhỏ để bạn nhìn thấy React state chuyển động."
         action={{ label: "Task mới", to: "/tasks/new" }}
       />
