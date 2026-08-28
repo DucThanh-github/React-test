@@ -1,7 +1,9 @@
 const storageKey = 'react-lab-tasks'
 
 export function loadTasks<T>(fallback: T): T {
-  if (typeof window === 'undefined') return fallback
+  if (typeof window === 'undefined' || typeof window.localStorage === 'undefined') {
+    return fallback
+  }
 
   try {
     const saved = window.localStorage.getItem(storageKey)
@@ -12,7 +14,12 @@ export function loadTasks<T>(fallback: T): T {
 }
 
 export function saveTasks<T>(tasks: T) {
-  if (typeof window !== 'undefined') {
-    window.localStorage.setItem(storageKey, JSON.stringify(tasks))
+  if (typeof window !== 'undefined' && typeof window.localStorage !== 'undefined') {
+    try {
+      window.localStorage.setItem(storageKey, JSON.stringify(tasks))
+    } catch {
+      // Bỏ qua lỗi ghi storage trong môi trường bị giới hạn hoặc test headless
+    }
   }
 }
+
